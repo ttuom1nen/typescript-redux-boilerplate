@@ -1,6 +1,6 @@
 export enum ActionTypes {
-  fetchTodos,
-  deleteTodo,
+  fetchTodos = "FETCH_TODOS",
+  deleteTodo = "DELETE_TODO",
 }
 
 export interface Todo {
