@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const TodoItem: React.FC<Props> = (props) => {
-  const { id, title, completed, onTodoClick } = { ...props };
+  const { id, title, completed, onTodoClick } = props;
   const localClasses = useStyles();
 
   return (
     <div onClick={() => onTodoClick(id)} className={localClasses.todoItem}>
       <b>{title}</b>
-      <p>Completed: {completed}</p>
+      <p>Completed: {"" + completed}</p>
     </div>
   );
 };
