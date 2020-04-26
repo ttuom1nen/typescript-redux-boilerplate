@@ -1,9 +1,32 @@
-import { Todo } from "./todos/interfaces";
+import { Todo } from "./todos/todosInterfaces";
+import { User } from "./users/usersInterfaces";
+
+export interface TodosState {
+  didInvalidate: boolean;
+  fetching: boolean;
+  data: Todo[];
+}
+
+export interface UsersState {
+  didInvalidate: boolean;
+  fetching: boolean;
+  data: User[];
+}
 
 export interface StoreState {
-  todos: Todo[];
+  todos: TodosState;
+  users: UsersState;
 }
 
 export const initialState: StoreState = {
-  todos: [],
+  todos: {
+    didInvalidate: false,
+    fetching: true,
+    data: [],
+  },
+  users: {
+    didInvalidate: false,
+    fetching: true,
+    data: [],
+  },
 };
