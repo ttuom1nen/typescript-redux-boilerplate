@@ -1,0 +1,46 @@
+import { Todo, Action, ActionTypes } from "./todosInterfaces";
+import { initialState, TodosState } from "../initialState";
+
+const setTodosData = (state: Todo[] = [], action: Action): Todo[] => {
+  switch (action.type) {
+    case ActionTypes.SetTodos:
+      return action.payload;
+    case ActionTypes.DeleteTodo:
+      return state.filter((todo: Todo) => todo.id !== action.payload);
+    default:
+      return state;
+  }
+};
+
+const fetchInvalidated = (state: boolean = false, action: Action): boolean => {
+  switch (action.type) {
+    case ActionTypes.SetTodos:
+      return false;
+    case ActionTypes.DidInvalidate:
+      return true;
+    default:
+      return false;
+  }
+};
+
+const setTodosFetching = (state: boolean, action: Action): boolean => {
+  switch (action.type) {
+    case ActionTypes.DidInvalidate:
+    case ActionTypes.SetTodos:
+      return false;
+
+    default:
+      return true;
+  }
+};
+
+export const todosReducer = (
+  state: TodosState = initialState.todos,
+  action: Action
+) => {
+  return {
+    didInvalidate: fetchInvalidated(state.didInvalidate, action),
+    fetching: setTodosFetching(state.fetching, action),
+    data: setTodosData(state.data, action),
+  };
+};
