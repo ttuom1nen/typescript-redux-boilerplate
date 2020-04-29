@@ -16,6 +16,7 @@ export interface UsersState {
 export interface StoreState {
   todos: TodosState;
   users: UsersState;
+  theme: string;
 }
 
 export const initialState: StoreState = {
@@ -29,4 +30,5 @@ export const initialState: StoreState = {
     fetching: true,
     data: [],
   },
+  theme: "light",
 };
