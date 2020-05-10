@@ -11,11 +11,19 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     todoItem: {
-      border: "1px solid silver",
+      border: `1px solid ${theme.palette.primary.dark}`,
       borderRadius: "3px",
-      padding: "10px",
       margin: "10px",
       maxWidth: "200px",
+    },
+    todoTitle: {
+      backgroundColor: theme.palette.primary.main,
+      padding: "10px",
+      color: "#fff",
+    },
+    todoContent: {
+      padding: "10px",
+      color: theme.palette.primary.main,
     },
   })
 );
@@ -26,8 +34,12 @@ const TodoItem: React.FC<Props> = (props) => {
 
   return (
     <div onClick={() => onTodoClick(id)} className={localClasses.todoItem}>
-      <b>{title}</b>
-      <p>Completed: {"" + completed}</p>
+      <div className={localClasses.todoTitle}>
+        <b>{title}</b>
+      </div>
+      <div className={localClasses.todoContent}>
+        <p>Completed: {"" + completed}</p>
+      </div>
     </div>
   );
 };

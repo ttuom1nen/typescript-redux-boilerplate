@@ -1,24 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import TodoList from "./Todos/TodoList";
 import { Button } from "@material-ui/core";
-import { ThemeContext } from "./ThemeProvider";
+import { useDispatch } from "react-redux";
+import { switchTheme } from "../redux/main/mainActions";
 
 const App: React.FC = () => {
-  const setThemeName = useContext(ThemeContext);
+  // const setTheme = useContext(ThemeContext);
+  const dispatch = useDispatch();
+
+  const setTheme = (themeName: string): void => {
+    dispatch(switchTheme(themeName));
+  };
 
   return (
     <div>
       <Button
         variant="contained"
         color="primary"
-        onClick={() => setThemeName("lightTheme")}
+        onClick={() => setTheme("lightTheme")}
       >
         Set Light Theme
       </Button>
       <Button
         variant="contained"
         color="secondary"
-        onClick={() => setThemeName("darkTheme")}
+        onClick={() => setTheme("darkTheme")}
       >
         Set Dark Theme
       </Button>

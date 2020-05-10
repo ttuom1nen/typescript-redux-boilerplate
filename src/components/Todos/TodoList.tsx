@@ -17,6 +17,7 @@ const TodoList: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchTodos());
+
     return () => {
       console.log("TodoList cleaned up!");
     };
