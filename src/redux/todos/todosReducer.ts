@@ -30,7 +30,7 @@ const setTodosFetching = (state: boolean, action: Action): boolean => {
       return false;
 
     default:
-      return true;
+      return false;
   }
 };
 
