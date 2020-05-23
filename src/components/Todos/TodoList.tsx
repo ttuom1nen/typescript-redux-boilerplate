@@ -17,17 +17,13 @@ const TodoList: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchTodos());
-
-    return () => {
-      console.log("TodoList cleaned up!");
-    };
   }, [dispatch]);
 
   const onTodoClick = (id: number): void => {
     dispatch(deleteTodo(id));
   };
 
-  const renderTodosList = () => {
+  const renderTodos = () => {
     return todos.map((todo: Todo) => (
       <TodoItem
         key={todo.id}
@@ -48,7 +44,7 @@ const TodoList: React.FC = () => {
       {fetching ? (
         <p>Loading...</p>
       ) : !invalidated ? (
-        renderTodosList()
+        renderTodos()
       ) : (
         renderError()
       )}
