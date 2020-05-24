@@ -30,5 +30,5 @@ export const initialState: StoreState = {
     fetching: true,
     data: [],
   },
-  theme: "lightTheme",
+  theme: "pinkTheme",
 };
