@@ -1,44 +1,63 @@
 import React from "react";
+import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
+import Switch from "@material-ui/core/Switch";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 interface Props {
   id: number;
   title: string;
   completed: boolean;
   onTodoClick(id: number): void;
+  onToggleComplete(id: number): void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     todoItem: {
-      border: `1px solid ${theme.palette.primary.dark}`,
-      borderRadius: "3px",
+      maxWidth: "400px",
       margin: "10px",
-      maxWidth: "200px",
+      padding: "10px",
+      borderRadius: "7px",
+      backgroundColor: "#fff",
+      color: theme.palette.primary.main,
+      boxShadow: "0 2px 2px 2px rgba(0,0,0,0.12)",
     },
     todoTitle: {
-      backgroundColor: theme.palette.primary.main,
-      padding: "10px",
-      color: "#fff",
+      display: "flex",
+      justifyContent: "space-between",
     },
-    todoContent: {
-      padding: "10px",
-      color: theme.palette.primary.main,
+    handCursor: {
+      cursor: "pointer",
     },
   })
 );
 
 const TodoItem: React.FC<Props> = (props) => {
-  const { id, title, completed, onTodoClick } = props;
+  const { id, title, completed, onTodoClick, onToggleComplete } = props;
   const localClasses = useStyles();
 
   return (
-    <div onClick={() => onTodoClick(id)} className={localClasses.todoItem}>
+    <div className={localClasses.todoItem}>
       <div className={localClasses.todoTitle}>
-        <b>{title}</b>
+        <div>
+          <Switch
+            size="small"
+            checked={completed}
+            onChange={() => onToggleComplete(id)}
+            name="checkedA"
+            inputProps={{ "aria-label": "secondary checkbox" }}
+          />
+        </div>
+        <div>
+          <DeleteForeverOutlinedIcon
+            className={localClasses.handCursor}
+            onClick={() => onTodoClick(id)}
+          />
+        </div>
       </div>
-      <div className={localClasses.todoContent}>
-        <p>Completed: {"" + completed}</p>
+      <div>
+        <Typography>{title}</Typography>
       </div>
     </div>
   );
