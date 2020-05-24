@@ -23,6 +23,11 @@ const TodoList: React.FC = () => {
     dispatch(deleteTodo(id));
   };
 
+  const onToggleComplete = (id: number): void => {
+    // dispatch(toggleCompleteTodo(id));
+    console.log(id);
+  };
+
   const renderTodos = () => {
     return todos.map((todo: Todo) => (
       <TodoItem
@@ -31,6 +36,7 @@ const TodoList: React.FC = () => {
         title={todo.title}
         completed={todo.completed}
         onTodoClick={onTodoClick}
+        onToggleComplete={onToggleComplete}
       />
     ));
   };
