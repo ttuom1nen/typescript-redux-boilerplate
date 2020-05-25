@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import TodoItem from "./TodoItem";
 import { StoreState } from "../../redux/initialState";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTodos, deleteTodo } from "../../redux/todos/todosActions";
+import {
+  fetchTodos,
+  deleteTodo,
+  toggleCompleted,
+} from "../../redux/todos/todosActions";
 import { Todo } from "../../redux/todos/todosInterfaces";
 
 const TodoList: React.FC = () => {
@@ -24,8 +28,7 @@ const TodoList: React.FC = () => {
   };
 
   const onToggleComplete = (id: number): void => {
-    // dispatch(toggleCompleteTodo(id));
-    console.log(id);
+    dispatch(toggleCompleted(id));
   };
 
   const renderTodos = () => {

@@ -5,6 +5,7 @@ import {
   Todo,
   SetTodosAction,
   DeleteTodoAction,
+  ToggleCompletedAction,
   InvalidateAction,
 } from "./todosInterfaces";
 import { BASE_URL } from "../config";
@@ -33,6 +34,13 @@ export const fetchTodos = () => {
 export const deleteTodo = (id: number): DeleteTodoAction => {
   return {
     type: ActionTypes.DeleteTodo,
+    payload: id,
+  };
+};
+
+export const toggleCompleted = (id: number): ToggleCompletedAction => {
+  return {
+    type: ActionTypes.ToggleCompleted,
     payload: id,
   };
 };

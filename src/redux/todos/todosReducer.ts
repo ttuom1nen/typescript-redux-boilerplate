@@ -7,6 +7,14 @@ const setTodosData = (state: Todo[] = [], action: Action): Todo[] => {
       return action.payload;
     case ActionTypes.DeleteTodo:
       return state.filter((todo: Todo) => todo.id !== action.payload);
+    case ActionTypes.ToggleCompleted:
+      return state.map((todo: Todo) => {
+        if (todo.id === action.payload) {
+          return { ...todo, completed: !todo.completed };
+        }
+
+        return todo;
+      });
     default:
       return state;
   }

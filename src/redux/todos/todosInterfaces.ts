@@ -2,6 +2,7 @@ export enum ActionTypes {
   DidInvalidate = "todos/didInvalidate",
   SetTodos = "todos/setTodos",
   DeleteTodo = "todos/delete",
+  ToggleCompleted = "todos/toggleCompleted",
 }
 
 export interface Todo {
@@ -20,8 +21,17 @@ export interface DeleteTodoAction {
   payload: number;
 }
 
+export interface ToggleCompletedAction {
+  type: ActionTypes.ToggleCompleted;
+  payload: number;
+}
+
 export interface InvalidateAction {
   type: ActionTypes.DidInvalidate;
 }
 
-export type Action = SetTodosAction | DeleteTodoAction | InvalidateAction;
+export type Action =
+  | SetTodosAction
+  | DeleteTodoAction
+  | InvalidateAction
+  | ToggleCompletedAction;
