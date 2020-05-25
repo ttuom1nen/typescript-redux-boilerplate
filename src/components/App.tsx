@@ -34,6 +34,12 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const theme: string = useSelector((state: StoreState) => state.theme);
 
+  const themes = [
+    { themeName: "pinkTheme", displayName: "Pink" },
+    { themeName: "lightTheme", displayName: "Light" },
+    { themeName: "darkTheme", displayName: "Dark" },
+  ];
+
   const chooseTheme = (event: React.ChangeEvent<{ value: any }>): void => {
     dispatch(switchTheme(event.target.value));
     console.log(event.target.value);
@@ -50,9 +56,11 @@ const App: React.FC = () => {
             value={theme}
             onChange={chooseTheme}
           >
-            <MenuItem value={"pinkTheme"}>Pink</MenuItem>
-            <MenuItem value={"lightTheme"}>Light</MenuItem>
-            <MenuItem value={"darkTheme"}>Dark</MenuItem>
+            {themes.map((theme) => (
+              <MenuItem key={theme.themeName} value={theme.themeName}>
+                {theme.displayName}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
